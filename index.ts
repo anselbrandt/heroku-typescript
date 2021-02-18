@@ -55,9 +55,9 @@ const main = async () => {
 
   httpServer.listen(PORT, () => {
     if (NODE_ENV === "dev") {
-      console.log(`server started on http://localhost:${PORT}`);
+      console.log(`server started at http://localhost:${PORT}`);
     } else {
-      console.log(`running in production on port ${PORT}`);
+      console.log(`server started on port ${PORT}`);
     }
   });
 };
