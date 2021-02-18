@@ -10,7 +10,7 @@
     "postinstall": "cd web && yarn && yarn build",
     "start": "node .",
     "build": "tsc",
-    "dev": "nodemon"
+    "dev": "rm -rf web/build && nodemon"
   },
   "keywords": [],
   "author": "",

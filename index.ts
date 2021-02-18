@@ -11,6 +11,8 @@ const PORT = process.env.PORT || 4000;
 const NODE_ENV = process.env.NODE_ENV || "dev";
 
 console.log(`running in ${NODE_ENV}`);
+if (NODE_ENV === "dev")
+  console.log("to start webpack, open a new tab and 'cd /web && yarn start'");
 
 const devResponse = `<html>
 <div>Looks like you're running in dev mode.</div>
