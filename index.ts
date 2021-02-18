@@ -4,7 +4,7 @@ import path from "path";
 import * as dotenv from "dotenv";
 dotenv.config();
 import cors from "cors";
-import { promises as fs } from "fs";
+// import { promises as fs } from "fs";
 
 const PORT = process.env.PORT || 4000;
 
@@ -16,6 +16,12 @@ const data = {
   message: "Hello from the API server.",
 };
 
+const devResponse = `<html>
+<div>Looks like you're running in dev mode.</div>
+<div></div>
+<div>Start the React app by running 'yarn start' in the '/web' folder.</div>
+</html>`;
+
 const main = async () => {
   const app = express();
   app.use(
@@ -24,12 +30,17 @@ const main = async () => {
       credentials: true,
     })
   );
-  app.use(express.static(path.join(__dirname, "../public")));
+  // app.use(express.static(path.join(__dirname, "../public")));
 
-  app.set("views", path.join(__dirname, "../views"));
-  app.set("view engine", "ejs");
+  app.use(express.static(path.join(__dirname, "../web/build")));
 
-  app.get("/", (req, res) => res.render("pages/index"));
+  app.get("/", (req, res) => {
+    if (NODE_ENV === "dev") {
+      res.send(devResponse);
+    } else {
+      res.sendFile(path.join(__dirname + "../web/build/index.html"));
+    }
+  });
 
   app.get("/api", (req, res) => {
     res.json(data);
