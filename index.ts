@@ -30,7 +30,6 @@ const main = async () => {
       credentials: true,
     })
   );
-  // app.use(express.static(path.join(__dirname, "../public")));
 
   app.use(express.static(path.join(__dirname, "../web/build")));
 
@@ -43,7 +42,8 @@ const main = async () => {
   });
 
   app.get("/api", (req, res) => {
-    res.json(data);
+    // res.json(data);
+    res.sendFile(path.join(__dirname, "../public/data.json"));
   });
 
   const httpServer = http.createServer(app);
