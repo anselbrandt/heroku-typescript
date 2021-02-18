@@ -14,7 +14,7 @@ $ yarn build
 $ yarn start
 ```
 
-Your app should now be running on [localhost:5000](http://localhost:5000/).
+Your app should now be running on [localhost:5000](http://localhost:4000/).
 
 ## Deploying to Heroku
 
