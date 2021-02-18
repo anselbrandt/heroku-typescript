@@ -1,0 +1,6 @@
+{
+  "name": "heroku-fullstack",
+  "description": "Typescript static and API server",
+  "repository": "https://github.com/anselbrandt/heroku-fullstack",
+  "keywords": ["node", "typescript", "express", "heroku", "react"]
+}
