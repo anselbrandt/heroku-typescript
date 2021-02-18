@@ -4,17 +4,13 @@ import path from "path";
 import * as dotenv from "dotenv";
 dotenv.config();
 import cors from "cors";
-// import { promises as fs } from "fs";
+import { promises as fs } from "fs";
 
 const PORT = process.env.PORT || 4000;
 
 const NODE_ENV = process.env.NODE_ENV || "dev";
 
 console.log(`running in ${NODE_ENV}`);
-
-const data = {
-  message: "Hello from the API server.",
-};
 
 const devResponse = `<html>
 <div>Looks like you're running in dev mode.</div>
@@ -23,6 +19,11 @@ const devResponse = `<html>
 </html>`;
 
 const main = async () => {
+  const file = await fs.readFile(
+    path.join(__dirname, "../public/data.json"),
+    "utf-8"
+  );
+
   const app = express();
   app.use(
     cors({
@@ -42,8 +43,10 @@ const main = async () => {
   });
 
   app.get("/api", (req, res) => {
-    // res.json(data);
-    res.sendFile(path.join(__dirname, "../public/data.json"));
+    const data = JSON.parse(file);
+    data.time = new Date().toLocaleTimeString();
+    res.json(data);
+    // res.sendFile(path.join(__dirname, "../public/data.json"));
   });
 
   const httpServer = http.createServer(app);
