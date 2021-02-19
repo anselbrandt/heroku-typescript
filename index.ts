@@ -11,13 +11,15 @@ const PORT = process.env.PORT || 4000;
 const NODE_ENV = process.env.NODE_ENV || "dev";
 
 console.log(`running in ${NODE_ENV}`);
-if (NODE_ENV === "dev")
+if (NODE_ENV === "dev") {
   console.log("to start webpack, open a new tab and 'cd /web && yarn start'");
+}
 
 const devResponse = `<html>
 <div>Looks like you're running in dev mode.</div>
 <div></div>
 <div>Start the React app by running 'yarn start' in the '/web' folder.</div>
+<div>API server available at http://localhost:${PORT}/api</div>
 </html>`;
 
 const main = async () => {
